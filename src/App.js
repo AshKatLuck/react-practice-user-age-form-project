@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./UI/Card";
 import NewUser from "./components/NewUser";
+import UserData from "./components/UserData";
 
 function App() {
   const dummyUserData = [
@@ -16,6 +17,8 @@ function App() {
     },
   ];
 
+  const userData = [...dummyUserData];
+
   return (
     <div>
       <div>
@@ -24,6 +27,11 @@ function App() {
       <Card>
         <div>
           <NewUser />
+        </div>
+      </Card>
+      <Card>
+        <div>
+          <UserData userData={userData} />
         </div>
       </Card>
     </div>
