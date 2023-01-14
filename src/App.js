@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "./UI/Card";
 import NewUser from "./components/NewUser";
 import UserData from "./components/UserData";
@@ -17,7 +17,13 @@ function App() {
     },
   ];
 
-  const userData = [...dummyUserData];
+  const [userData, setUserData] = useState(dummyUserData);
+
+  const addUserDataHandler = (enteredUserData) => {
+    setUserData((prevUserData) => {
+      return [enteredUserData, ...prevUserData];
+    });
+  };
 
   return (
     <div>
@@ -26,7 +32,7 @@ function App() {
       </div>
       <Card>
         <div>
-          <NewUser />
+          <NewUser addUserData={addUserDataHandler} />
         </div>
       </Card>
       <Card>

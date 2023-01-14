@@ -2,10 +2,17 @@ import React from "react";
 import "./NewUser.css";
 import NewUserForm from "./NewUserForm";
 
-const NewUser = () => {
+const NewUser = (props) => {
+  const saveNewUserHandler = (enteredUserData) => {
+    const userData = {
+      ...enteredUserData,
+      id: (Math.random() * 1000).toString(),
+    };
+    props.addUserData(userData);
+  };
   return (
     <div>
-      <NewUserForm></NewUserForm>
+      <NewUserForm onSaveNewUser={saveNewUserHandler}></NewUserForm>
     </div>
   );
 };
