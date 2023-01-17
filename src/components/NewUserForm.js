@@ -7,8 +7,7 @@ import ErrorModal from "../UI/ErrorModal";
 const NewUserForm = (props) => {
   const [enteredUserName, setEnteredUserName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
-  const [isUserNameValid, setIsUserNameValid] = useState(true);
-  const [isAgeValid, setIsAgeValid] = useState(true);
+  const [error, setError] = useState();
   const userNameChangeHandler = (event) => {
     setEnteredUserName(event.target.value);
   };
@@ -18,31 +17,42 @@ const NewUserForm = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (enteredUserName.trim().length === 0 || enteredAge.trim().length === 0) {
-      setIsUserNameValid(false);
+      setError({
+        title: "Invalid input",
+        message: "Enter non empty values for both name and age",
+      });
       return;
     }
     if (Number(enteredAge) <= 0) {
-      setIsAgeValid(false);
+      setError({
+        title: "Invalid age",
+        message: "Age cannot be a negative number",
+      });
       return;
     }
-    if (!isUserNameValid) {
-      alert("Enter user name");
-    } else if (!isAgeValid) {
-      alert("enter positive age");
-    } else {
-      const userData = {
-        name: enteredUserName,
-        age: enteredAge,
-        id: (Math.random() * 1000).toString(),
-      };
-      props.addUserData(userData);
-      setEnteredUserName("");
-      setEnteredAge("");
-    }
+
+    const userData = {
+      name: enteredUserName,
+      age: enteredAge,
+      id: (Math.random() * 1000).toString(),
+    };
+    props.addUserData(userData);
+    setEnteredUserName("");
+    setEnteredAge("");
+  };
+
+  const errorHandler = () => {
+    setError(null);
   };
   return (
     <div>
-      <ErrorModal title="Some Error" message="Some error occured" />
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onDismissError={errorHandler}
+        />
+      )}
       <Card className={classes.input}>
         <form onSubmit={submitHandler}>
           <label>User Name</label>
