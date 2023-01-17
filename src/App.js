@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Card from "./UI/Card";
-import NewUser from "./components/NewUser";
 import UserData from "./components/UserData";
+import NewUserForm from "./components/NewUserForm";
 
 function App() {
   const dummyUserData = [
@@ -27,19 +26,9 @@ function App() {
 
   return (
     <div>
-      <div>
-        <h1>Add User</h1>
-      </div>
-      <Card>
-        <div>
-          <NewUser addUserData={addUserDataHandler} />
-        </div>
-      </Card>
-      <Card>
-        <div>
-          <UserData userData={userData} />
-        </div>
-      </Card>
+      <h1>Add User</h1>
+      <NewUserForm addUserData={addUserDataHandler} />
+      <UserData userData={userData} />
     </div>
   );
 }
