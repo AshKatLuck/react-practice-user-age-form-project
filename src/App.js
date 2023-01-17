@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import UserData from "./components/UserData";
 import NewUserForm from "./components/NewUserForm";
+import UserDataList from "./components/UserDataList";
 
 function App() {
   const dummyUserData = [
@@ -28,7 +28,7 @@ function App() {
     <div>
       <h1>Add User</h1>
       <NewUserForm addUserData={addUserDataHandler} />
-      <UserData userData={userData} />
+      <UserDataList userData={userData} />
     </div>
   );
 }

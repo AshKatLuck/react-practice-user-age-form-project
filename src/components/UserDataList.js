@@ -1,10 +1,11 @@
 import React from "react";
-import UserDataItem from "./UserDataItem";
+import Card from "../UI/Card";
 const UserDataList = (props) => {
   return (
     <div>
       {props.userData.map((user) => {
-        return <UserDataItem key={user.id} name={user.name} age={user.age} />;
+        const content = user.name + "(" + user.age + " years old)";
+        return <Card>{content}</Card>;
       })}
     </div>
   );
