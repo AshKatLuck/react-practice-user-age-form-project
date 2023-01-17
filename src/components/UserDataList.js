@@ -7,7 +7,7 @@ const UserDataList = (props) => {
       <ul>
         {props.userData.map((user) => {
           const content = user.name + "(" + user.age + " years old)";
-          return <li>{content}</li>;
+          return <li key={user.id}>{content}</li>;
         })}
       </ul>
     </Card>
