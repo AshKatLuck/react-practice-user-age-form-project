@@ -16,11 +16,13 @@ const NewUserForm = (props) => {
   };
   const submitHandler = (event) => {
     event.preventDefault();
-    if (enteredUserName.trim().length === 0) {
+    if (enteredUserName.trim().length === 0 || enteredAge.trim().length === 0) {
       setIsUserNameValid(false);
+      return;
     }
     if (Number(enteredAge) <= 0) {
       setIsAgeValid(false);
+      return;
     }
     if (!isUserNameValid) {
       alert("Enter user name");
